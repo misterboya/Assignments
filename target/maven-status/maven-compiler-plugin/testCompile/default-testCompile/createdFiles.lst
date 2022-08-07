@@ -1,7 +1,0 @@
-runner/TestRunner.class
-steps/TimesheetHomeSteps.class
-steps/ApplicationHooks.class
-steps/CreateNewTimesheetSteps.class
-base/TestContextSetup.class
-base/BaseTest.class
-steps/TimesheetDetailsPageSteps.class
