@@ -35,4 +35,10 @@ public class TimesheetDetailsPageSteps {
     public void validate_currency_symbol_for_hourly_rate_field(String hourlyRateCurrencySymbol) {
         Assert.assertTrue(timesheetDetailsPage.hourlyRateFieldCurrencyLabel(hourlyRateCurrencySymbol));
     }
+
+    @Then("validate hourly rate label is {string} and price symbol is {string}")
+    public void validate_hourly_rate_label_and_price_symbol(String currencyLabel,
+                                                            String currencySymbol) {
+        Assert.assertTrue(timesheetDetailsPage.validateEmployeeDetails(currencyLabel, currencySymbol));
+    }
 }

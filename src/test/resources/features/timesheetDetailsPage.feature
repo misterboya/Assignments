@@ -1,7 +1,9 @@
 Feature: Timesheet Details Page
 
-  Scenario: Validate timesheet details page currency
+  Scenario Outline: Validate all employee details
     Given user is on timesheet home page "https://codat-qa-task.azurewebsites.net/"
-    And click on details link
-    Then validate hourly rate currency label is "£"
-    Then validate currency symbol for hourly rate field is "£"
+    Then validate hourly rate label is "<currencyLabel>" and price symbol is "<currencyPrefix>"
+
+    Examples:
+      |  currencyLabel | currencyPrefix  |
+      |       £        |       £         |

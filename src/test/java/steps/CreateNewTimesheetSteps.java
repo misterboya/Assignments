@@ -54,7 +54,7 @@ public class CreateNewTimesheetSteps {
     }
 
     @Then("validate new timesheet is created successfully {string}")
-    public void validate_new_timesheet_is_created_successfully(String expectednewTimesheetHeader) throws IOException {
+    public void validate_new_timesheet_is_created_successfully(String expectednewTimesheetHeader) {
         Assert.assertTrue(createNewTimesheetPage.
                 validateNewTimesheetHeaderText(expectednewTimesheetHeader));
     }
@@ -67,6 +67,16 @@ public class CreateNewTimesheetSteps {
     @Then("validate new employee id is created successfully")
     public void validate_new_employee_id_is_created_successfully() {
         Assert.assertTrue(createNewTimesheetPage.validateNewEmployeeID());
+    }
+
+    @Then("validate employee id {string} is deleted successfully")
+    public void validate_employee_id_is_deleted_successfully(String deleteEmployee) {
+        Assert.assertTrue(createNewTimesheetPage.clickDelete(deleteEmployee));
+    }
+
+    @Then("validate error handling message is displayed")
+    public void validate_error_handling_message_is_displayed() {
+        Assert.assertFalse(createNewTimesheetPage.validateErrorMessage());
     }
 
 }

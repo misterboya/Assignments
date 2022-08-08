@@ -6,6 +6,7 @@ public class PageObjectManager {
     public TimesheetHomePage timesheetHomePage;
     public CreateNewTimesheetPage createNewTimesheetPage;
     public TimesheetDetailsPage timesheetDetailsPage;
+    public EditTimesheetPage editTimesheetPage;
     public WebDriver driver;
 
     public PageObjectManager(WebDriver driver) {
@@ -25,5 +26,10 @@ public class PageObjectManager {
     public TimesheetDetailsPage getTimesheetDetailsPage() {
         timesheetDetailsPage = new TimesheetDetailsPage(driver);
         return timesheetDetailsPage;
+    }
+
+    public EditTimesheetPage getEditTimesheetPage() {
+        editTimesheetPage = new EditTimesheetPage(driver);
+        return editTimesheetPage;
     }
 }

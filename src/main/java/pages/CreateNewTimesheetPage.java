@@ -29,7 +29,10 @@ public class CreateNewTimesheetPage {
     private By backLink = By.linkText("Back to List");
     private By totalEmployees = By.xpath("//table/tbody/tr/td[1]");
     private By getEmployeeId = By.xpath("//dl/dd[1]");
-
+    private By deleteEmployeeId = By.xpath("//table/tbody/tr/td[5]/a[3]");
+    private By deleteButton = By.xpath("//input[@value='Delete']");
+    private By selectDeleteRow = By.xpath("//table/tbody/tr/td[1]");
+    private By error = By.tagName("h1");
 
 
     public void enterEmployeeId(String employee) {
@@ -63,6 +66,7 @@ public class CreateNewTimesheetPage {
 
     public void clickSubmitButton() {
         driver.findElement(saveButton).click();
+        helper.waitForPageToLoad(driver);
     }
 
     public boolean validateNewTimesheetHeaderText(String newTimesheetPartialHeader) {
@@ -85,5 +89,39 @@ public class CreateNewTimesheetPage {
         }
         return false;
     }
+
+    public boolean clickDelete(String deleteID) {
+        List<WebElement> employeeRows = driver.findElements(selectDeleteRow);
+
+        for (int i=0; i<employeeRows.size(); i++) {
+            employeeRows = driver.findElements(selectDeleteRow);
+            if (employeeRows.get(i).getText()
+                    .contains(deleteID)) {
+                driver.findElement(By.xpath("//table/tbody/tr/td[contains(text(), '"+deleteID+"')]/following-sibling::td[4]/a[3]"))
+                                .click();
+                helper.waitForEelementToBeClickable(deleteButton, 10);
+                driver.findElement(deleteButton).click();
+                helper.waitForPageToLoad(driver);
+                break;
+            }
+        }
+        employeeRows = driver.findElements(selectDeleteRow);
+
+        for (int i=0; i<employeeRows.size(); i++) {
+            System.out.println("Employee List: " + employeeRows.get(i)
+                    .getText());
+            if (employeeRows.get(i).getText().contains(deleteID)) {
+                return false;
+            }
+        }
+        return true;
+        }
+
+    public boolean validateErrorMessage() {
+        return driver.findElement(error).isDisplayed();
+    }
 }
+
+
+
 
